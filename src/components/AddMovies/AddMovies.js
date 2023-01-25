@@ -10,10 +10,11 @@ class AddMovies extends Component {
     };
 
     handleInput = event => {
-        let input = event.target.value;
-        let formattedInput = input.replace(/ /g, '+');
-        console.log(event.target.value)
-        this.setState({formattedInput: formattedInput});
+        const input = event.target.value;
+        const formattedInput = input.replace(/ /g, '+');
+        if (input.length > 2 || input.length == 0) {
+            this.setState({formattedInput: formattedInput});
+        }
     };
 
     render() {

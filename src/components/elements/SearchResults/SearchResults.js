@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import MovieThumbnails from "../MovieThumbnails/MovieThumbnails";
+import './SearchResults.css'
 
 const API_KEY = 'aeeb8aeb2b7826a4b59ceeec928a37ec';
 
@@ -25,10 +27,19 @@ class SearchResults extends Component {
 
     render() {
         let data = this.state.data;
+        let resultsDiv;
+        
+        if (data) {
+            let results = this.state.data['results'];
+            resultsDiv =  <MovieThumbnails results={results} />
+        } else {
+            resultsDiv = <p>Loading...</p>
+        }
+        
         return (
-            <div>
-                Data
-                {/* {data} */}
+            <div
+                className="results-div">
+                {resultsDiv}
             </div>
         );
     }
