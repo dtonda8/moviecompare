@@ -20,11 +20,13 @@ class AddMovies extends Component {
     render() {
         return (
             <div>
+                <div>
                 <input 
-                    className = 'SearchBar'
-                    placeholder='Movie/TV Show...' 
-                    onInput={this.handleInput}>
-                </input>
+                        className = 'SearchBar'
+                        placeholder='Movie/TV Show...' 
+                        onInput={this.handleInput}>
+                    </input>
+                </div>
                 <SearchResults key={this.state.formattedInput} input={this.state.formattedInput}/>
             </div>
 
