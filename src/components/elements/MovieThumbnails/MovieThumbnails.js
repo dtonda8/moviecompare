@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './MovieThumbnails.css';
 import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
+import Details from '../Details/Details';
 
 const BASE_POSTER_URL = 'https://image.tmdb.org/t/p/original'
 
@@ -11,27 +12,21 @@ class MovieThumbnails extends Component {
         const resultsDiv = results.map((result, index) => {
             if (result['poster_path']){
                 const poster = BASE_POSTER_URL + result['poster_path'];
-                const id = result['id'];
                 const altMsg = 'Movie poster';
                 return (
                     <div
                         key={index}
                         className='thumbnail'>
                         <img 
-                            id={id + '-img'}
                             className='movie-img'
                             src={poster}    
                             alt={altMsg}>
                         </img>
-                            <button 
-                                className='add-to-compare'
-                                id={id + 'add-to-compare-btn'}>
+                            <button className='add-to-compare'>
                                     Add to Compare
                             </button>
                             <Popup
-                            trigger={<button 
-                                        className='details'
-                                        id={id + 'details-btn'}>
+                            trigger={<button className='details'>
                                         Details
                                     </button>}
                             modal
@@ -40,22 +35,20 @@ class MovieThumbnails extends Component {
                             {close => (
                             <div className="modal">
                                 <button className="close" onClick={close}>
-                                &times;
+                                    &times;
                                 </button>
-                                <div className="header"> Modal Title </div>
-                                <div className="content">
-                                {' '}
-                                content
-                                </div>
+                                <div className="header"> {result['title'] ? result['title'] : result['name']} </div>
+                                    <div className="content">
+                                        <Details movieID={result['id']} poster={poster}/>
+                                    </div>
                                 <div className="actions">
-                                <button
-                                    className="button"
-                                    onClick={() => {
-                                    close();
-                                    }}
-                                >
-                                    Exit
-                                </button>
+                                    <button
+                                        className="button"
+                                        onClick={() => {
+                                        close();
+                                        }}>
+                                        Exit
+                                    </button>
                                 </div>
                             </div>
                             )}

@@ -1,0 +1,12 @@
+img {
+    width: 40%;
+}
+
+.content {
+    display: inline-block;
+}
+
+.full-details {
+    display: flex;
+    gap: 1rem;
+}

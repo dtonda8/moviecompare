@@ -16,12 +16,12 @@ class SearchResults extends Component {
     async componentDidMount() {
         if (this.state.query.length < 3) {
             fetch(`https://api.themoviedb.org/3/trending/all/day?api_key=${API_KEY}`)
-            .then(res => res.json())
-            .then(resJSON => this.setState({ data: resJSON}))
+                .then(res => res.json())
+                .then(resJSON => this.setState({ data: resJSON}))
         } else {
             fetch(`https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&query=${this.state.query}`)
-            .then(res => res.json())
-            .then(resJSON => this.setState({ data: resJSON}))
+                .then(res => res.json())
+                .then(resJSON => this.setState({ data: resJSON}))
         }
     }
 
