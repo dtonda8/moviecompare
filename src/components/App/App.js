@@ -42,7 +42,7 @@ class App extends Component {
         <NavBar moviesToCompare={this.state.moviesToCompare}/>
         <Routes>
           <Route path='/' element={<AddMovies compareMovie={(movieID)=> this.compareMovie(movieID)}/>} />
-          <Route path='/compare' element={<Compare />} />
+          <Route path='/compare' element={<Compare movieIDs={this.state.moviesToCompare}/>} />
         </Routes>
       </Router>
     );
