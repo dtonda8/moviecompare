@@ -31,7 +31,9 @@ class SearchResults extends Component {
         
         if (data) {
             let results = this.state.data['results'];
-            resultsDiv =  <MovieThumbnails results={results} />
+            resultsDiv =  <MovieThumbnails 
+                            results={results} 
+                            onClickAddMovie={(movieID) => this.props.onClickAddMovie(movieID)}/>
         } else {
             resultsDiv = <p>Loading...</p>
         }

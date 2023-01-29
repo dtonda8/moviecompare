@@ -13,6 +13,7 @@ class MovieThumbnails extends Component {
             if (result['poster_path']){
                 const poster = BASE_POSTER_URL + result['poster_path'];
                 const altMsg = 'Movie poster';
+                const movieID = result['id'];
                 return (
                     <div
                         key={index}
@@ -22,7 +23,9 @@ class MovieThumbnails extends Component {
                             src={poster}    
                             alt={altMsg}>
                         </img>
-                            <button className='add-to-compare'>
+                            <button 
+                                className='add-to-compare'
+                                onClick={() => this.props.onClickAddMovie(movieID)}>
                                     Add to Compare
                             </button>
                             <Popup
@@ -39,7 +42,7 @@ class MovieThumbnails extends Component {
                                 </button>
                                 <div className="header"> {result['title'] ? result['title'] : result['name']} </div>
                                     <div className="content">
-                                        <Details movieID={result['id']} poster={poster}/>
+                                        <Details movieID={movieID} poster={poster}/>
                                     </div>
                                 <div className="actions">
                                     <button

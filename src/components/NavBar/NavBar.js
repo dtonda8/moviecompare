@@ -7,7 +7,10 @@ class NavBar extends Component {
             <nav>
             <h2>MovieCompare</h2>
             <h2>Search</h2>
-            <h2>Compare</h2>
+            <button className="notification">
+                <span>Compare</span>
+                <span className="badge">{this.props.moviesToCompare.length}</span>
+            </button>
             <h2>Links to APIs</h2>
             </nav>
         )
