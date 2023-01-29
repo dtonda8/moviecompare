@@ -34,11 +34,10 @@ class Details extends Component {
 
         return (
             <div className='full-details'>
-                <img 
-                    src={this.props.poster}
-                    alt='Movie Poster'>
-
-                </img>
+                {/* <img  */}
+                    {/* src={this.props.poster} */}
+                    {/* alt='Movie Poster'>
+                </img> */}
                 {detailsDiv}
             </div>
         );
