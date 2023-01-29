@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import SearchResults from "../elements/SearchResults/SearchResults";
+import './AddMovies.css'
 
 class AddMovies extends Component {
     constructor(props) {
@@ -17,7 +18,7 @@ class AddMovies extends Component {
 
     render() {
         return (
-            <div>
+            <div className="add-movies">
                 <div>
                     <input 
                         className = 'SearchBar'
@@ -30,7 +31,6 @@ class AddMovies extends Component {
                     input={this.state.formattedInput} 
                     onClickAddMovie={(movieID) => this.props.compareMovie(movieID)}/>
             </div>
-
         );
     };
 };

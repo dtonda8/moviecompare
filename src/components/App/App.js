@@ -1,9 +1,11 @@
 import AddMovies from '../AddMovies/AddMovies';
 import React, { Component } from 'react';
 import NavBar from '../NavBar/NavBar'
+import Compare from '../Compare/Compare';
 import { Notyf } from 'notyf';
 import 'notyf/notyf.min.css';
 import './App.css';
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 class App extends Component {
   constructor(props) {
@@ -36,10 +38,13 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App">
+      <Router>
         <NavBar moviesToCompare={this.state.moviesToCompare}/>
-        <AddMovies compareMovie={(movieID)=> this.compareMovie(movieID)}/>
-      </div>
+        <Routes>
+          <Route path='/' element={<AddMovies compareMovie={(movieID)=> this.compareMovie(movieID)}/>} />
+          <Route path='/compare' element={<Compare />} />
+        </Routes>
+      </Router>
     );
   }
 }
