@@ -1,0 +1,27 @@
+img {
+    width: 90%;
+}
+
+.content {
+    display: flex;
+}
+
+.full-details {
+    display: flex;
+    gap: 1rem;
+}
+
+.image-container {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.main-details {
+    flex: 3;
+}
+
+.ratings {
+    flex: 1;
+}
