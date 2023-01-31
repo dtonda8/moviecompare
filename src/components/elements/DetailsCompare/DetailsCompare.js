@@ -22,24 +22,34 @@ class DetailsCompare extends Component {
         let detailsDiv;
         if (results) {
             const { title, vote_average, overview, poster_path, release_date, revenue, budget } = results;
-            
-            const filmHeader = ` ${title} (${release_date.split('-')[0]})`;
-            detailsDiv= <div className='content'>
+            const movieID = this.props.movieID;
+            const year = release_date.split('-')[0];
+            detailsDiv= <div id={movieID} className='content'>
                                 <div className='image-container'>
                                     <img
+                                        className='image-compare'
                                         src={BASE_POSTER_URL + poster_path}
                                         alt='Movie Poster'>
                                     </img>
                                 </div>
                                 <div className='main-details'>
-                                    <p className='title'><strong>{filmHeader}</strong></p>
+                                    <p className='title'>
+                                        <strong>
+                                            {title} <span className='release-date' id={`${movieID}-${year}`}></span>({year})
+                                        </strong>
+                                    </p>
                                     <p className='age-runtime'>Age rating and runtime</p>
                                     <p className='overview'>{overview}</p>
-                                    <p className='director'>Director</p>
-                                    <p className='stars'>starred:</p>
-                                    <p className='budget-revenue'>Budget and Revenue bar</p>
+                                    <p className='director-stars'>Director: Starred:</p>
+                                    <p className='budget' id={`${movieID}-${budget}`}>
+                                        Budget:${budget}
+                                    </p>
+                                    <p className='revenue' id={`${movieID}-${revenue}`}>
+                                        Revenue:${revenue}
+                                    </p>
+
                                 </div>
-                                <div className='ratings'>TMDB:{vote_average}</div>
+                                <div className='vote_average' id={`${movieID}-${vote_average}`} >TMDB:{vote_average}</div>
                         </div>;
         } else {
             detailsDiv = <div>Loading...</div>;
