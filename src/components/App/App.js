@@ -33,6 +33,11 @@ class App extends Component {
     } else {
       moviesToCompare.push(movieID)
       this.setState({ moviesToCompare:moviesToCompare })
+      let notyf = new Notyf({
+        duration: 2000,
+        position: {y: 'top'}
+      });
+      notyf.success('Added Movie');
     }
   }
 
