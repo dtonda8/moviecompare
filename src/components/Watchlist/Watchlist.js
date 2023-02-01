@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import DetailsCompare from '../elements/DetailsCompare/DetailsCompare';
-import './Compare.css';
+import DetailsCompact from '../elements/DetailsCompact/DetailsCompact';
+import './Watchlist.css';
 
-class Compare extends Component {
+class Watchlist extends Component {
     sortMovies() {
         if (!document.getElementById("sort-method")) {
             return
@@ -41,7 +41,7 @@ class Compare extends Component {
                             <option value='vote_average'>Rating</option>
                             <option value='revenue'>Revenue</option>
                             <option value='budget'>Budget</option>
-                            <option selected="selected" value='release-date'>Release Date</option>
+                            <option defaultValue value='release-date'>Release Date</option>
                         </select>
                     </div>
                     <div className='rating-symbols'>Rating symbols</div>
@@ -49,7 +49,7 @@ class Compare extends Component {
                 <div id='movies'>
                     {movieIDs.map((movieID, index) => {
                         return  <div key={index} className='movie'>
-                                    <DetailsCompare movieID={movieID} />
+                                    <DetailsCompact movieID={movieID} />
                                 </div>
                     })}
                 </div>
@@ -61,4 +61,4 @@ class Compare extends Component {
 }
 
 
-export default Compare
+export default Watchlist;

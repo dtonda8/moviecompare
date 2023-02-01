@@ -1,7 +1,7 @@
 import AddMovies from '../AddMovies/AddMovies';
 import React, { Component } from 'react';
 import NavBar from '../NavBar/NavBar'
-import Compare from '../Compare/Compare';
+import Watchlist from '../Watchlist/Watchlist';
 import Details from '../Details/Details';
 import { Notyf } from 'notyf';
 import 'notyf/notyf.min.css';
@@ -11,29 +11,38 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 class App extends Component {
   constructor(props) {
     super(props)
-    this.state = {moviesToCompare:[]}
+    this.state = {watchlist:[]}
   }
 
   compareMovie(movieID) {
-    const moviesToCompare = this.state.moviesToCompare.slice();
+    const watchlist = this.state.watchlist.slice();
+    const index = watchlist.indexOf(movieID)
 
-    if (moviesToCompare.includes(movieID)) {
+    if (index > -1) {
+      watchlist.splice(index, 1);
+      this.setState({ watchlist:watchlist });
       let notyf = new Notyf({
         duration: 2000,
-        position: {y: 'top'}
-      });
-      notyf.error('Movie already added');
+        position: {y: 'top'},
+        types: [
+          {
+            type: 'success',
+            background: 'orange',
+            duration: 2000,
+          }
+        ]});
+      notyf.success('Movie removed');
 
-    } else if (this.state.moviesToCompare.length >= 10) {
+    } else if (watchlist.length >= 100) {
       let notyf = new Notyf({
         duration: 4500,
         position: {y: 'top'}
       });
-      notyf.error('Maximum of 10 movies to compare. Remove some from the compare tab.');
+      notyf.error('Maximum of 100 movies for Watchlist. Remove some from the Watchlist tab.');
 
     } else {
-      moviesToCompare.push(movieID)
-      this.setState({ moviesToCompare:moviesToCompare })
+      watchlist.push(movieID)
+      this.setState({ watchlist:watchlist })
       let notyf = new Notyf({
         duration: 2000,
         position: {y: 'top'}
@@ -45,10 +54,13 @@ class App extends Component {
   render() {
     return (
       <Router>
-        <NavBar moviesToCompare={this.state.moviesToCompare}/>
+        <NavBar moviesToCompare={this.state.watchlist}/>
         <Routes>
-          <Route path='/' element={<AddMovies compareMovie={(movieID)=> this.compareMovie(movieID)}/>} />
-          <Route path='/compare' element={<Compare movieIDs={this.state.moviesToCompare}/>} />
+          <Route path='/' 
+            element={<AddMovies 
+                      compareMovie={(movieID)=> this.compareMovie(movieID)}  
+                      watchlist={this.state.watchlist}/>} />
+          <Route path='/watchlist' element={<Watchlist movieIDs={this.state.watchlist}/>} />
           <Route path='/:movieID' element={<Details />} />
         </Routes>
       </Router>

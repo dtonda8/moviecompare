@@ -33,7 +33,8 @@ class SearchResults extends Component {
             let results = this.state.data['results'];
             resultsDiv =  <MovieThumbnails 
                             results={results} 
-                            onClickAddMovie={(movieID) => this.props.onClickAddMovie(movieID)}/>
+                            onClickAddMovie={(movieID) => this.props.onClickAddMovie(movieID)}
+                            watchlist={this.props.watchlist}/>
         } else {
             resultsDiv = <p>Loading...</p>
         }
