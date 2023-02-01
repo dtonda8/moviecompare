@@ -1,10 +1,10 @@
 import React, { Component, useState, useEffect } from 'react';
-import './DetailsCompare.css'
+import './DetailsCompact.css'
 
 const TMDB_API_KEY = 'redacted';
 const BASE_POSTER_URL = 'https://image.tmdb.org/t/p/original';
 
-class DetailsCompare extends Component {
+class DetailsCompact extends Component {
     constructor(props) {
         super(props)
         this.state = {
@@ -64,5 +64,5 @@ class DetailsCompare extends Component {
 }
 
 
-export default DetailsCompare
+export default DetailsCompact;
 

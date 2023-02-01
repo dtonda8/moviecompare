@@ -29,7 +29,8 @@ class AddMovies extends Component {
                 <SearchResults 
                     key={this.state.formattedInput} 
                     input={this.state.formattedInput} 
-                    onClickAddMovie={(movieID) => this.props.compareMovie(movieID)}/>
+                    onClickAddMovie={(movieID) => this.props.compareMovie(movieID)}
+                    watchlist={this.props.watchlist}/>
             </div>
         );
     };

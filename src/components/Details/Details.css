@@ -1,0 +1,30 @@
+img {
+    width: 20%;
+}
+
+.content {
+    display: flex;
+}
+
+.full-details {
+    display: flex;
+    gap: 1rem;
+}
+
+.image-container {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.main-details {
+    flex: 3;
+}
+
+.overview {
+    flex: 1;
+}
+.ratings {
+    flex: 1;
+}

@@ -34,7 +34,7 @@ display:block;
     grid-template-columns: 1fr;
 }
 
-.add-to-compare, .details {
+.add-to-watchlist, .details {
     font-size: 1em;
     font-weight: bold;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -60,7 +60,7 @@ display:block;
     top: 58%;
 }
 
-.add-to-compare:hover {
+.add-to-watchlist:hover {
     background-color: grey;
 }
 
@@ -68,7 +68,7 @@ display:block;
     background-color: grey;
 }
 
-.thumbnail:hover .add-to-compare {   
+.thumbnail:hover .add-to-watchlist {   
     opacity: 1;
 }
 
