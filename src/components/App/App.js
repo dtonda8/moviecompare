@@ -2,6 +2,7 @@ import AddMovies from '../AddMovies/AddMovies';
 import React, { Component } from 'react';
 import NavBar from '../NavBar/NavBar'
 import Compare from '../Compare/Compare';
+import Details from '../Details/Details';
 import { Notyf } from 'notyf';
 import 'notyf/notyf.min.css';
 import './App.css';
@@ -48,6 +49,7 @@ class App extends Component {
         <Routes>
           <Route path='/' element={<AddMovies compareMovie={(movieID)=> this.compareMovie(movieID)}/>} />
           <Route path='/compare' element={<Compare movieIDs={this.state.moviesToCompare}/>} />
+          <Route path='/:movieID' element={<Details />} />
         </Routes>
       </Router>
     );
