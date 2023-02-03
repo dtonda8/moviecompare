@@ -31,7 +31,7 @@ const Trailer = (props) => {
         <iframe
             title='myFrame'
             className='video'
-            src={`https://www.youtube.com/embed/${videoKey}?autoplay=1`}
+            src={`https://www.youtube-nocookie.com/embed/${videoKey}?autoplay=1`}
             allow="autoplay">
         </iframe>
     )

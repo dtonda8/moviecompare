@@ -12,10 +12,7 @@ class NavBar extends Component {
                 <button>Search</button>
             </Link>
             <Link to='/watchlist'>
-                <button className="notification">
-                    <span>Watchlist</span>
-                    <span className="badge">{this.props.moviesToCompare.length}</span>
-                </button>
+                <button>Watchlist</button>
             </Link>
             <h2>Links to APIs</h2>
             </nav>

@@ -1,0 +1,22 @@
+.actor {
+    display: inline-block;
+    border: 1px solid rgb(219, 219, 219);
+    border-radius: 4px;
+}
+
+.actor-container {
+    display: grid;
+    width: 80%;
+    max-width: 1000px;
+    grid-template-columns: repeat(4, 1fr);
+    row-gap: 1rem;
+    column-gap: 1rem;
+}
+
+.actor-image {
+    width: 100%;
+}
+
+.actor-name {
+    margin: 4px;
+}

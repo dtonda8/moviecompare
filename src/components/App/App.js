@@ -54,7 +54,7 @@ class App extends Component {
   render() {
     return (
       <Router>
-        <NavBar moviesToCompare={this.state.watchlist}/>
+        <NavBar />
         <Routes>
           <Route path='/' 
             element={<AddMovies 

@@ -1,20 +1,22 @@
-.image-compare {
+img.image-compare {
     width: 80%;
     margin: 0.5rem;
+    max-width: 200px;
 }
 
-.content {
+.compare-content {
     display: flex;
 }
 
-.full-details {
+.movie-details {
     display: flex;
     gap: 1rem;
 }
 
-.image-container {
+.compare-content > .image-container {
     flex: 1;
     display: flex;
+    justify-content: left;
     align-items: center;
 }
 
@@ -29,5 +31,10 @@
 .budget,
 .revenue {
     display: inline;
-    margin: 4px
+    margin: 4px;
+    margin-left: 0px;
 }
+.budget-revenue {
+    margin-top: 10px;
+}
+
