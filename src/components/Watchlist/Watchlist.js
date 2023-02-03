@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import DetailsCompact from '../elements/DetailsCompact/DetailsCompact';
+// import Details from '../Details/Details';
 import './Watchlist.css';
 
 class Watchlist extends Component {
