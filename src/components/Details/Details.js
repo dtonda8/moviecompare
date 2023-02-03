@@ -5,16 +5,20 @@ import Trailer from '../elements/Trailer/Trailer';
 import './Details.css'
 import DetailsCompact from '../elements/DetailsCompact/DetailsCompact';
 
-const Details = () => {
+const Details = ({ watchlist, onClickAddMovie }) => {
     const { movieID } = useParams();
     const [actors, setActors] = useState(null);
 
     return (
         <div className='full-details'>
-            <DetailsCompact movieID={movieID} handleActors={(actors) => setActors(actors)}/>
+            <DetailsCompact 
+                movieID={Number(movieID)} 
+                handleActors={(actors) => setActors(actors)}
+                watchlist={watchlist}
+                onClickAddMovie={onClickAddMovie}/>
             <h2>Trailer</h2>
             <div className='video-container' id={movieID + '-video'} >
-                <Trailer movieID={movieID} />
+                <Trailer movieID={Number(movieID)} />
             </div>
             <h2>Cast</h2>
             <div className='actors'>

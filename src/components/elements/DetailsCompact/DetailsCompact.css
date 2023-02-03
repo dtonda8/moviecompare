@@ -8,7 +8,7 @@
     width: 100%;
 }
 
-.watchlist > .key-details {
+div.key-details {
     margin-top: 1rem;
     display: flex;
     gap: 1rem;
@@ -16,6 +16,11 @@
     max-width: 1200px;
     border: 1px solid rgb(226, 226, 226);
     border-radius: 0.5rem;
+}
+
+div.thumbnail {
+    height: 100%;
+    flex:1;
 }
 
 .image-container {
@@ -34,6 +39,7 @@
 
 .content {
     display: block;
+    flex: 5;
 }
 
 div.actors {

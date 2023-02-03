@@ -1,3 +1,10 @@
 .add-movies {
     text-align: center;
 }
+
+input.search-bar {
+    margin: 8px;
+    font-size: large;
+    border: 1px solid grey;
+    border-radius: 6px;
+}

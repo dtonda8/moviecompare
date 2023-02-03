@@ -21,7 +21,7 @@ class AddMovies extends Component {
             <div className="add-movies">
                 <div>
                     <input 
-                        className = 'SearchBar'
+                        className = 'search-bar'
                         placeholder='Movie name...' 
                         onInput={this.handleInput}>
                     </input>

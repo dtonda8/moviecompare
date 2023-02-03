@@ -1,10 +1,9 @@
-import React, { Component } from 'react';
+import React from 'react';
 import DetailsCompact from '../elements/DetailsCompact/DetailsCompact';
-// import Details from '../Details/Details';
 import './Watchlist.css';
 
-class Watchlist extends Component {
-    sortMovies() {
+const Watchlist = ({ watchlist, onClickAddMovie }) => {
+    const sortMovies = () => {
         if (!document.getElementById("sort-method")) {
             return
         }
@@ -23,41 +22,40 @@ class Watchlist extends Component {
         parent.innerHTML = "";
         for(var i = 0, l = toSort.length; i < l; i++) {
             parent.appendChild(toSort[i]);
-}
     }
-    render() {
-        const movieIDs = this.props.movieIDs;
-        if (movieIDs.length === 0) {
-            return (
-                <div>No movies added to compare :)</div>
-            )}
-
+    }
+    if (watchlist.length === 0) {
         return (
-        <div className='watchlist'>
-            <div className='movie-list'>
-                <div className='header'>
-                    <div className='sorting-method'>
-                        Sort by:
-                        <select id='sort-method' name='method' onChange={() => this.sortMovies()}>
-                            <option value='vote_average'>Rating</option>
-                            <option value='revenue'>Revenue</option>
-                            <option value='budget'>Budget</option>
-                            <option defaultValue value='release-date'>Release Date</option>
-                        </select>
-                    </div>
-                </div>
-                <div id='movies'>
-                    {movieIDs.map((movieID, index) => {
-                        return  <div key={index} className='movie'>
-                                    <DetailsCompact movieID={movieID} />
-                                </div>
-                    })}
+            <div>No movies added to compare :)</div>
+        )}
+
+    return (
+    <div className='watchlist'>
+        <div className='movie-list'>
+            <div className='header'>
+                <div className='sorting-method'>
+                    Sort by:
+                    <select id='sort-method' name='method' onChange={() => sortMovies()}>
+                        <option value='vote_average'>Rating</option>
+                        <option value='revenue'>Revenue</option>
+                        <option value='budget'>Budget</option>
+                        <option defaultValue value='release-date'>Release Date</option>
+                    </select>
                 </div>
             </div>
+            <div id='movies'>
+                {watchlist.map((movieID, index) => {
+                    return  <div key={index} className='movie'>
+                                <DetailsCompact 
+                                    movieID={movieID} 
+                                    watchlist={watchlist}
+                                    onClickAddMovie={onClickAddMovie}/>
+                            </div>
+                })}
+            </div>
         </div>
-
-        )
-    }
+    </div>
+    )
 }
 
 

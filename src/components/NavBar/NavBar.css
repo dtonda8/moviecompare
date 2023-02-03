@@ -1,9 +1,13 @@
+* {
+  font-family: Roboto;
+}
+
 nav {
     display: flex;  /* 1*/
     justify-content: space-between; /* 2 */
     align-items: center;
     padding: 1rem 2rem; /* 3 */
-    background: #009cdf; /* 4 */
+    background-color: rgb(243, 243, 243);
   }
   
 .notification {
@@ -26,4 +30,27 @@ nav {
   border-radius: 50%;
   background: red;
   color: white;
+}
+
+.cls-1 {
+  fill:url(#linear-gradient);
+}
+.movie-compare,
+.search-btn,
+.watchlist-btn {
+  background-color: transparent;
+  border: 2px solid rgb(224, 224, 224);
+  padding: 8px 16px;
+  border-radius: 3px ;
+  font-size: larger;
+}
+
+.movie-compare {
+  border: none;
+}
+
+.search-btn:hover,
+.watchlist-btn:hover {
+  background-color: rgb(202, 202, 202);
+  transition: 0.2s;
 }
