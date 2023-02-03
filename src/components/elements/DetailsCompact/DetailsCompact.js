@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import './DetailsCompact.css'
+import MovieThumbnail from "../MovieThumbnail/MovieThumbnail";
 
 const API_KEY = 'redacted';
-const BASE_POSTER_URL = 'https://image.tmdb.org/t/p/original';
 
-const DetailsCompact = ({movieID, handleActors}) => {
+const DetailsCompact = ({movieID, handleActors, watchlist, onClickAddMovie}) => {
     const [movieDetails, setMovieDetails] = useState(null);
 
     useEffect(() => {
@@ -74,11 +74,18 @@ const DetailsCompact = ({movieID, handleActors}) => {
         const year = release_date.split('-')[0];
         return (
                 <div className='key-details'>
-                    <img
+                    {/* <img
                         className='details-image'
                         src={BASE_POSTER_URL + poster_path}
                         alt='Movie Poster'>
-                    </img>
+                    </img> */}
+                    <MovieThumbnail 
+                        poster_path={poster_path}
+                        title={title}
+                        id={movieID}
+                        release_date={release_date}
+                        watchlist={watchlist}
+                        onClickAddMovie={onClickAddMovie}/>
                     <div className='content'>
                         <p className='title'>
                             <strong>

@@ -1,3 +1,4 @@
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import AddMovies from '../AddMovies/AddMovies';
 import React, { Component } from 'react';
 import NavBar from '../NavBar/NavBar'
@@ -6,7 +7,7 @@ import Details from '../Details/Details';
 import { Notyf } from 'notyf';
 import 'notyf/notyf.min.css';
 import './App.css';
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+
 
 class App extends Component {
   constructor(props) {
@@ -17,6 +18,7 @@ class App extends Component {
   compareMovie(movieID) {
     const watchlist = this.state.watchlist.slice();
     const index = watchlist.indexOf(movieID)
+    console.log(watchlist)
 
     if (index > -1) {
       watchlist.splice(index, 1);
@@ -60,8 +62,12 @@ class App extends Component {
             element={<AddMovies 
                       compareMovie={(movieID)=> this.compareMovie(movieID)}  
                       watchlist={this.state.watchlist}/>} />
-          <Route path='/watchlist' element={<Watchlist movieIDs={this.state.watchlist}/>} />
-          <Route path='/:movieID' element={<Details />} />
+          <Route path='/watchlist' element={<Watchlist 
+                                              watchlist={this.state.watchlist}
+                                              onClickAddMovie={(movieID)=> this.compareMovie(movieID)}/>} />
+          <Route path='/:movieID' element={<Details 
+                                              onClickAddMovie={(movieID)=> this.compareMovie(movieID)}
+                                              watchlist={this.state.watchlist}/>} />
         </Routes>
       </Router>
     );
