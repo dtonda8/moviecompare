@@ -9,6 +9,7 @@ class Watchlist extends Component {
             return
         }
         const sortMethod = document.getElementById("sort-method").value;
+        console.log(sortMethod)
         // source: https://stackoverflow.com/questions/5066925/javascript-only-sort-a-bunch-of-divs
         let parent = document.getElementById('movies');
         let toSort = Array.prototype.slice.call(parent.children, 0);
@@ -32,10 +33,9 @@ class Watchlist extends Component {
             )}
 
         return (
-        <div className='nav'>
+        <div className='watchlist'>
             <div className='movie-list'>
                 <div className='header'>
-                    <strong className='film-header'>Film</strong>
                     <div className='sorting-method'>
                         Sort by:
                         <select id='sort-method' name='method' onChange={() => this.sortMovies()}>
@@ -45,7 +45,6 @@ class Watchlist extends Component {
                             <option defaultValue value='release-date'>Release Date</option>
                         </select>
                     </div>
-                    <div className='rating-symbols'>Rating symbols</div>
                 </div>
                 <div id='movies'>
                     {movieIDs.map((movieID, index) => {

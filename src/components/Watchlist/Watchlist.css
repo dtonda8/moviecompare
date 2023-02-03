@@ -1,4 +1,4 @@
-.nav {
+.watchlist {
     width: 100%;
     display: flex;
     justify-content: center;
@@ -7,11 +7,13 @@
 .movie-list {
     margin-top: 24px;
     align-self: center;
-    width: 80%;
+}
+
+select {
+    margin-left: 0.5rem;
 }
 
 .movie {
-    border: 1px solid rgb(141, 141, 141);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -19,8 +21,7 @@
 
 .header {
     display: flex;
-    background-color: rgb(232, 232, 232);
-    border-radius: 4px;
+    margin: 1rem;
 }
 
 .film-header,
