@@ -14,7 +14,6 @@ const DetailsCompact = ({movieID, handleActors, watchlist, onClickAddMovie}) => 
     })
 
     const handleMovieDetails = data => {
-        //check if API call for movie is successful
         if (data && !('success' in data)) { 
             setMovieDetails(data)
             getAgeRating(data.release_dates)
