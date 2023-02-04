@@ -4,6 +4,10 @@
     justify-content: center;
 }
 
+.header {
+    display: flex;
+}
+
 .movie-list {
     margin-top: 24px;
     align-self: center;
@@ -21,20 +25,26 @@ select {
 
 .header {
     display: flex;
+    justify-content: center;
     margin: 1rem;
 }
 
 .film-header,
-.sorting-method,
 .rating-symbols {
     flex: 1;
 }
 
-.sorting-method {
-    text-align: center;
+.sorting-method,
+.hide-details-checkbox {
+    margin: 0 1rem;
 }
+
 
 .rating-symbols {
     text-align: right;
+}
+
+.hide {
+    display: none;
 }
 

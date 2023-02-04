@@ -29,6 +29,12 @@ const Watchlist = ({ watchlist, onClickAddMovie }) => {
             <div>No movies added to compare :)</div>
         )}
 
+    const toggleDetails = () => {
+        const movies = document.getElementById('movies');
+        movies.querySelectorAll('.content').forEach(content => content.classList.toggle('hide'))
+        movies.classList.toggle('results-div')
+    }
+
     return (
     <div className='watchlist'>
         <div className='movie-list'>
@@ -41,6 +47,10 @@ const Watchlist = ({ watchlist, onClickAddMovie }) => {
                         <option value='budget'>Budget</option>
                         <option defaultValue value='release-date'>Release Date</option>
                     </select>
+                </div>
+                <div className='hide-details-checkbox'>
+                    Hide Details:
+                    <input type='checkbox' onChange={() => toggleDetails()}></input>
                 </div>
             </div>
             <div id='movies'>

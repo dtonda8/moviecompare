@@ -18,7 +18,6 @@ class App extends Component {
   compareMovie(movieID) {
     const watchlist = this.state.watchlist.slice();
     const index = watchlist.indexOf(movieID)
-    console.log(watchlist)
 
     if (index > -1) {
       watchlist.splice(index, 1);
