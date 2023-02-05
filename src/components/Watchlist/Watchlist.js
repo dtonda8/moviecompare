@@ -8,7 +8,6 @@ const Watchlist = ({ watchlist, onClickAddMovie }) => {
             return
         }
         const sortMethod = document.getElementById("sort-method").value;
-        console.log(sortMethod)
         // source: https://stackoverflow.com/questions/5066925/javascript-only-sort-a-bunch-of-divs
         let parent = document.getElementById('movies');
         let toSort = Array.prototype.slice.call(parent.children, 0);
@@ -35,10 +34,11 @@ const Watchlist = ({ watchlist, onClickAddMovie }) => {
         movies.classList.toggle('results-div')
     }
 
+
     return (
     <div className='watchlist'>
         <div className='movie-list'>
-            <div className='header'>
+            <div className='header' >
                 <div className='sorting-method'>
                     Sort by:
                     <select id='sort-method' name='method' onChange={() => sortMovies()}>
@@ -55,7 +55,7 @@ const Watchlist = ({ watchlist, onClickAddMovie }) => {
             </div>
             <div id='movies'>
                 {watchlist.map((movieID, index) => {
-                    return  <div key={index} className='movie'>
+                    return  <div key={movieID} className='movie'>
                                 <DetailsCompact 
                                     movieID={movieID} 
                                     watchlist={watchlist}

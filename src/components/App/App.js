@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import AddMovies from '../AddMovies/AddMovies';
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import NavBar from '../NavBar/NavBar'
 import Watchlist from '../Watchlist/Watchlist';
 import Details from '../Details/Details';
@@ -9,19 +9,17 @@ import 'notyf/notyf.min.css';
 import './App.css';
 
 
-class App extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {watchlist:[]}
-  }
+const App = () => {
+  const [watchlist, setWatchlist] = useState([])
 
-  compareMovie(movieID) {
-    const watchlist = this.state.watchlist.slice();
-    const index = watchlist.indexOf(movieID)
+  const compareMovie = (movieID) => {
+    const copy = watchlist.slice();
+    const index = copy.indexOf(movieID)
 
     if (index > -1) {
-      watchlist.splice(index, 1);
-      this.setState({ watchlist:watchlist });
+      copy.splice(index, 1);
+      setWatchlist(copy)
+
       let notyf = new Notyf({
         duration: 2000,
         position: {y: 'top'},
@@ -34,7 +32,7 @@ class App extends Component {
         ]});
       notyf.success('Movie removed');
 
-    } else if (watchlist.length >= 100) {
+    } else if (copy.length >= 100) {
       let notyf = new Notyf({
         duration: 4500,
         position: {y: 'top'}
@@ -42,8 +40,8 @@ class App extends Component {
       notyf.error('Maximum of 100 movies for Watchlist. Remove some from the Watchlist tab.');
 
     } else {
-      watchlist.push(movieID)
-      this.setState({ watchlist:watchlist })
+      copy.push(movieID)
+      setWatchlist(copy)
       let notyf = new Notyf({
         duration: 2000,
         position: {y: 'top'}
@@ -52,25 +50,23 @@ class App extends Component {
     }
   }
 
-  render() {
-    return (
-      <Router>
-        <NavBar />
-        <Routes>
-          <Route path='/' 
-            element={<AddMovies 
-                      compareMovie={(movieID)=> this.compareMovie(movieID)}  
-                      watchlist={this.state.watchlist}/>} />
-          <Route path='/watchlist' element={<Watchlist 
-                                              watchlist={this.state.watchlist}
-                                              onClickAddMovie={(movieID)=> this.compareMovie(movieID)}/>} />
-          <Route path='/:movieID' element={<Details 
-                                              onClickAddMovie={(movieID)=> this.compareMovie(movieID)}
-                                              watchlist={this.state.watchlist}/>} />
-        </Routes>
-      </Router>
-    );
-  }
+  return (
+    <Router>
+      <NavBar />
+      <Routes>
+        <Route path='/' 
+          element={<AddMovies 
+                    compareMovie={(movieID)=> compareMovie(movieID)}  
+                    watchlist={watchlist}/>} />
+        <Route path='/watchlist' element={<Watchlist 
+                                            watchlist={watchlist}
+                                            onClickAddMovie={(movieID)=> compareMovie(movieID)}/>} />
+        <Route path='/:movieID' element={<Details 
+                                            onClickAddMovie={(movieID)=> compareMovie(movieID)}
+                                            watchlist={watchlist}/>} />
+      </Routes>
+    </Router>
+  );
 }
 
 export default App;

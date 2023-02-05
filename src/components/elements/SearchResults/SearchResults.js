@@ -17,7 +17,7 @@ const SearchResults = ({ input, onClickAddMovie, watchlist }) => {
                 .then(res => res.json())
                 .then(resJSON => setData(resJSON))
         }
-    })
+    }, [])
     
     if (data) {
         let { results } = data
