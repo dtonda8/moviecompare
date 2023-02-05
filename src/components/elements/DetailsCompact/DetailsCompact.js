@@ -8,17 +8,18 @@ const DetailsCompact = ({movieID, handleActors, watchlist, onClickAddMovie}) => 
     const [movieDetails, setMovieDetails] = useState(null);
 
     useEffect(() => {
+        console.log('render')
         fetch(`https://api.themoviedb.org/3/movie/${movieID}?api_key=${API_KEY}&language=en-US&append_to_response=credits,release_dates`)
             .then(response => response.json())
             .then(data => handleMovieDetails(data));
-    })
+    }, [])
 
     const handleMovieDetails = data => {
         if (data && !('success' in data)) { 
             setMovieDetails(data)
             getAgeRating(data.release_dates)
-            if (typeof handleActors !== "undefined" && movieDetails) { 
-                handleActors(movieDetails.credits.cast)            
+            if (typeof handleActors !== "undefined" && data) { 
+                handleActors(data.credits.cast)            
             }
         }
     }
@@ -73,11 +74,6 @@ const DetailsCompact = ({movieID, handleActors, watchlist, onClickAddMovie}) => 
         const year = release_date.split('-')[0];
         return (
                 <div className='key-details'>
-                    {/* <img
-                        className='details-image'
-                        src={BASE_POSTER_URL + poster_path}
-                        alt='Movie Poster'>
-                    </img> */}
                     <MovieThumbnail 
                         poster_path={poster_path}
                         title={title}
