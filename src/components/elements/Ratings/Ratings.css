@@ -1,0 +1,8 @@
+.more-ratings {
+    display: flex;
+    align-items: center;
+}
+
+svg {
+    margin-left: 2rem;
+}
