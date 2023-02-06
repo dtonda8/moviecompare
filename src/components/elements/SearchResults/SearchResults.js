@@ -48,4 +48,4 @@ const SearchResults = ({ input, onClickAddMovie, watchlist }) => {
 }
 
 
-export default SearchResults
+export default SearchResults;

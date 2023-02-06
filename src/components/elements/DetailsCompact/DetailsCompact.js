@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './DetailsCompact.css'
 import MovieThumbnail from "../MovieThumbnail/MovieThumbnail";
+import Ratings from '../Ratings/Ratings';
 
 const API_KEY = 'redacted';
 
@@ -8,7 +9,6 @@ const DetailsCompact = ({movieID, handleActors, watchlist, onClickAddMovie}) => 
     const [movieDetails, setMovieDetails] = useState(null);
 
     useEffect(() => {
-        console.log('render')
         fetch(`https://api.themoviedb.org/3/movie/${movieID}?api_key=${API_KEY}&language=en-US&append_to_response=credits,release_dates`)
             .then(response => response.json())
             .then(data => handleMovieDetails(data));
@@ -67,7 +67,8 @@ const DetailsCompact = ({movieID, handleActors, watchlist, onClickAddMovie}) => 
                 budget, 
                 revenue,
                 release_date,
-                runtime } = movieDetails;
+                runtime, 
+                imdb_id} = movieDetails;
 
         const genresList = [];
         genres.forEach(genre => genresList.push(genre.name))
@@ -100,9 +101,7 @@ const DetailsCompact = ({movieID, handleActors, watchlist, onClickAddMovie}) => 
                             <strong>Genres:</strong>
                             {genresList.join(', ')}
                         </div>
-                        <div className='vote_average' id={`${movieID}-${vote_average}`}>
-                            <strong>Rating:</strong>{vote_average}
-                        </div>
+                        <Ratings vote_average={vote_average} movieID={movieID} imdbID={imdb_id}/>
                         <div className='director-starring'><strong>Director:</strong> {getDirector()}, <strong>Starring:</strong> {getStars()}</div>
                         <div className='budget-revenue'>
                             <p className='budget' id={`${movieID}-${budget}`}>

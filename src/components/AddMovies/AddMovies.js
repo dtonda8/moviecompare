@@ -7,10 +7,7 @@ const AddMovies = ({ compareMovie, watchlist }) => {
 
     const handleInput = event => {
         let input = event.target.value;
-        if (input.length > 2 || input.length === 0) {
-            input = input.replace(/ /g, '+');
-            setFormattedInput(formattedInput);
-        }
+        if (input.length > 2 || input.length === 0) setFormattedInput(input.replace(/ /g, '+'))
     };
 
     return (
