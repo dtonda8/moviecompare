@@ -31,7 +31,7 @@ const NavBar = ({ userId }) => {
             <Link to='/login'>
                 <button onClick={logout} className='login-btn'>{userId ? 'Logout' : 'Login'}</button>
             </Link>
-            <Tmdb width="200" height="50" />
+            <Tmdb width="16vw" height="6vh" />
         </nav>
     )
 }
