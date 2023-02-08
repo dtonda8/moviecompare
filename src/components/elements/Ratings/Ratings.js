@@ -13,7 +13,7 @@ const Ratings = ({ movieID, imdbID, vote_average }) => {
     
     useEffect(() => {
         if (!imdbID) return
-        fetch(`http://www.omdbapi.com?i=${imdbID}&apikey=${OMDB_KEY}`)
+        fetch(`https://www.omdbapi.com?i=${imdbID}&apikey=${OMDB_KEY}`)
             .then(res => res.json())
             .then(data => handleData(data))
     }, [])
