@@ -1,58 +1,67 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { getDatabase, ref, get, set } from "firebase/database";
+import { onAuthStateChanged } from "firebase/auth";
+import { useEffect } from "react";
 import AddMovies from '../AddMovies/AddMovies';
 import React, { useState } from 'react';
 import NavBar from '../NavBar/NavBar'
 import Watchlist from '../Watchlist/Watchlist';
 import Details from '../Details/Details';
-import { Notyf } from 'notyf';
+import Login from "../Login/Login";
+import { generalNotfy, warningNotyf } from "../elements/Notifications/Notifications";
 import 'notyf/notyf.min.css';
 import './App.css';
+import { auth } from "../../firebase_setup/firebase";
 
 
 const App = () => {
-  const [watchlist, setWatchlist] = useState([])
+  const [watchlist, setWatchlist] = useState([]);
+  const [userId, setUserId] = useState(null);
+
+  useEffect(() => {
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        const userId = user.uid;
+        setUserId(userId)
+        const dbRef = ref(getDatabase());
+        get(dbRef, `users/${userId}`)
+          .then((snapshot) => {
+              if (snapshot.exists()) updateWatchlist(snapshot.val().users[userId].watchlist);
+              else updateWatchlist([]);
+          })
+          .catch((error) => {
+              alert(error);
+          });
+          generalNotfy.success('Welcome!');
+      } 
+    });
+  }, [])
 
   const compareMovie = (movieID) => {
     const copy = watchlist.slice();
-    const index = copy.indexOf(movieID)
+    const index = copy.indexOf(movieID);
 
     if (index > -1) {
       copy.splice(index, 1);
-      setWatchlist(copy)
+      warningNotyf.success('Movie removed');
 
-      let notyf = new Notyf({
-        duration: 2000,
-        position: {y: 'top'},
-        types: [
-          {
-            type: 'success',
-            background: 'orange',
-            duration: 2000,
-          }
-        ]});
-      notyf.success('Movie removed');
-
-    } else if (copy.length >= 100) {
-      let notyf = new Notyf({
-        duration: 4500,
-        position: {y: 'top'}
-      });
-      notyf.error('Maximum of 100 movies for Watchlist. Remove some from the Watchlist tab.');
+    } else if (copy.length >= 30) {
+      warningNotyf.error('Maximum of 30 movies for Watchlist. Remove some from the Watchlist tab.');
 
     } else {
-      copy.push(movieID)
-      setWatchlist(copy)
-      let notyf = new Notyf({
-        duration: 2000,
-        position: {y: 'top'}
-      });
-      notyf.success('Added Movie');
+      copy.push(movieID);
+      generalNotfy.success('Added Movie');
     }
+
+    setWatchlist(copy);
+    if (userId) set(ref(getDatabase(), 'users/' + userId), { watchlist : copy });
   }
+
+  const  updateWatchlist = newWatchlist => setWatchlist(newWatchlist);
 
   return (
     <Router>
-      <NavBar />
+      <NavBar userId={userId}/>
       <Routes>
         <Route path='/' 
           element={<AddMovies 
@@ -64,6 +73,7 @@ const App = () => {
         <Route path='/:movieID' element={<Details 
                                             onClickAddMovie={(movieID)=> compareMovie(movieID)}
                                             watchlist={watchlist}/>} />
+        <Route path='/login' element={<Login watchlist={watchlist} updateWatchlist={updateWatchlist} userId={userId} />} />                     
       </Routes>
     </Router>
   );
