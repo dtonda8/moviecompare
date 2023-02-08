@@ -1,0 +1,36 @@
+.sign-in-create-account-container > input, 
+label {
+    display: block;
+}
+
+.sign-in-create-account-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#login-header {
+    margin: 10px;
+}
+
+.login, .sign-up {
+    margin: 4px;
+}
+
+.hide {
+    display: none;
+}
+
+.show {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#sign-in-msg > button,
+#create-account-msg > button  {
+    background-color: transparent;
+    border: none;
+    font-size: 16px;
+    font-weight: bold;
+}

@@ -5,7 +5,7 @@ import { ReactComponent as RottenTomatoes } from '../RatingSymbols/rotten_tomato
 import { ReactComponent as Tmdb } from '../RatingSymbols/tmdb.svg';
 import './Ratings.css'
 
-const OMDB_KEY = 'daee70b3'
+const OMDB_KEY = 'redacted'
 
 const Ratings = ({ movieID, imdbID, vote_average }) => {
     const [ratings, setRating] = useState(null)
