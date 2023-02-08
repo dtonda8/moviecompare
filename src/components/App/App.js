@@ -26,11 +26,13 @@ const App = () => {
         const dbRef = ref(getDatabase());
         get(dbRef, `users/${userId}`)
           .then((snapshot) => {
-              if (snapshot.exists()) updateWatchlist(snapshot.val().users[userId].watchlist);
-              else updateWatchlist([]);
+              if (snapshot.exists()) {
+                const data = snapshot.val().users[userId]
+                data ? updateWatchlist(data.watchlist) : updateWatchlist([])
+              } else updateWatchlist([]);
           })
           .catch((error) => {
-              alert(error);
+              console.log(error);
           });
           generalNotfy.success('Welcome!');
       } 
