@@ -16,6 +16,7 @@ div.key-details {
     max-width: 1200px;
     border: 1px solid rgb(226, 226, 226);
     border-radius: 0.5rem;
+    overflow: auto;
 }
 
 div.thumbnail {

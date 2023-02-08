@@ -40,10 +40,11 @@ nav {
 .watchlist-btn,
 .login-btn {
   background-color: transparent;
-  border: 2px solid rgb(224, 224, 224);
-  padding: 8px 16px;
+  border: 2px solid rgb(232, 232, 232);
+  padding: 0.5vh 1vw;
   border-radius: 3px ;
-  font-size: larger;
+  font-size: min(1.7vmax, 24px);
+  
 }
 
 .movie-compare {
