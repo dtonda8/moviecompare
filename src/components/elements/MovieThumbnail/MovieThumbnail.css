@@ -35,7 +35,7 @@ display:block;
 }
 
 .add-to-watchlist, .details {
-    font-size: 1em;
+    font-size: 1.8vmin;
     font-weight: bold;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     color: rgb(0, 78, 181);
