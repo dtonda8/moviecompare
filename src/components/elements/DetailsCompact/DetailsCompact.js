@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './DetailsCompact.css'
 import MovieThumbnail from "../MovieThumbnail/MovieThumbnail";
 import Ratings from '../Ratings/Ratings';
+import { Stack } from '@chakra-ui/react'
 
 const API_KEY = 'redacted';
 
@@ -83,13 +84,14 @@ const DetailsCompact = ({movieID, handleActors, watchlist, onClickAddMovie}) => 
                         watchlist={watchlist}
                         onClickAddMovie={onClickAddMovie}/>
                     <div className='content'>
+                    <Stack>
                         <p className='title'>
                             <strong>
                                 {title} <span className='release-date' id={`${movieID}-${year}`}></span>({year})
                             </strong>
                         </p>
                         <div className='age-runtime-container'>
-                            <p className='age-rating'>
+                            <p className='age-rating' fontSize={'6xl'}>
                                 <strong>Age Rating: </strong> {getAgeRating()}  
                             </p>
                             <p className='runtime'>
@@ -111,7 +113,9 @@ const DetailsCompact = ({movieID, handleActors, watchlist, onClickAddMovie}) => 
                                 <strong>Revenue: </strong>${split(revenue)}
                             </p>
                         </div>
+                    </Stack>
                     </div>
+                    
                 </div>
         );
     }
