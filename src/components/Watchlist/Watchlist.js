@@ -25,7 +25,7 @@ const Watchlist = ({ watchlist, onClickAddMovie }) => {
     }
     if (watchlist.length === 0) {
         return (
-            <div>No movies added to compare :)</div>
+            <div className='watchlist' >No movies added to watchlist :)</div>
         )}
 
     const toggleDetails = () => {
@@ -54,7 +54,7 @@ const Watchlist = ({ watchlist, onClickAddMovie }) => {
                 </div>
             </div>
             <div id='movies'>
-                {watchlist.map((movieID, index) => {
+                {watchlist.map(movieID => {
                     return  <div key={movieID} className='movie'>
                                 <DetailsCompact 
                                     movieID={movieID} 

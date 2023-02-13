@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import SearchResults from "../elements/SearchResults/SearchResults";
+import { Input, Stack } from '@chakra-ui/react'
 import './AddMovies.css'
 
 const AddMovies = ({ compareMovie, watchlist }) => {
@@ -15,7 +16,7 @@ const AddMovies = ({ compareMovie, watchlist }) => {
             <div>
                 <input 
                     className = 'search-bar'
-                    placeholder='Movie name...' 
+                    placeholder=' Movie name...' 
                     onInput={handleInput}>
                 </input>
             </div>
