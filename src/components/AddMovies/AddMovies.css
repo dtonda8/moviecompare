@@ -1,5 +1,12 @@
-.add-movies {
+.page {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+div.add-movies {
     text-align: center;
+    width: min(1200px, 96%);
 }
 
 input.search-bar {

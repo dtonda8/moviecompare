@@ -11,19 +11,21 @@ const AddMovies = ({ compareMovie, watchlist }) => {
     };
 
     return (
-        <div className="add-movies">
-            <div>
-                <input 
-                    className = 'search-bar'
-                    placeholder=' Movie name...' 
-                    onInput={handleInput}>
-                </input>
+        <div className="page">
+            <div className="add-movies">
+                <div>
+                    <input 
+                        className = 'search-bar'
+                        placeholder=' Movie name...' 
+                        onInput={handleInput}>
+                    </input>
+                </div>
+                <SearchResults 
+                    key={formattedInput} 
+                    input={formattedInput} 
+                    onClickAddMovie={(movieID) => compareMovie(movieID)}
+                    watchlist={watchlist}/>
             </div>
-            <SearchResults 
-                key={formattedInput} 
-                input={formattedInput} 
-                onClickAddMovie={(movieID) => compareMovie(movieID)}
-                watchlist={watchlist}/>
         </div>
     );
 };

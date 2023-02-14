@@ -4,13 +4,15 @@
     justify-content: center;
 }
 
+
 .header {
     display: flex;
 }
 
 .movie-list {
     margin-top: 24px;
-    align-self: center;
+    align-self: left;
+    width: min(1200px, 96%);
 }
 
 select {
@@ -18,7 +20,7 @@ select {
 }
 
 .movie {
-    display: flex;
+    display: inline-flex;
     align-items: center;
     justify-content: center;
 }
