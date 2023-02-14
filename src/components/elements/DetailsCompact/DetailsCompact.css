@@ -3,14 +3,15 @@
 }
 
 .full-details {
-    display: flex;
+    display: inline-flex;
     align-items: center;
     width: 100%;
+    flex-direction: column;
 }
 
 div.key-details {
     margin-top: 1rem;
-    display: flex;
+    display: inline-flex;
     gap: 1rem;
     width: 100%;
     max-width: 1200px;
@@ -19,34 +20,23 @@ div.key-details {
     overflow: auto;
 }
 
-div.thumbnail {
-    height: 100%;
-    flex:1;
-}
-
 .image-container {
     flex: 1;
-    display: flex;
+    display: inline-flex;
     justify-content: center;
     align-items: center;
 }
 
-.full-details {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    align-self: center;
-}
 
 .content {
-    display: block;
+    display: inline-block;
     flex: 5;
 }
 
 div.actors {
     text-align: center;
     width: auto;
-    display: flex;
+    display: inline-flex;
     justify-content: center;
 }
 
@@ -62,10 +52,6 @@ p {
 .runtime {
     display: inline;
     margin-right: 0.5rem;
-}
-
-div.movie-list {
-    width: 90%
 }
 
 .age-runtime-container,

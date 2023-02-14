@@ -58,8 +58,8 @@ export default function NavBar({userId}) {
   let btnHoverColour = 'green.500';
   let btnColour = 'green.400';
   if (userId) {
-    btnHoverColour = 'red.400';
-    btnColour = 'red.300';
+    btnHoverColour = 'red.600';
+    btnColour = 'red.500';
   } 
   return (
     <Box>
