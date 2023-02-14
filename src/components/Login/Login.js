@@ -4,9 +4,10 @@ import { getDatabase, ref, set, get } from "firebase/database";
 import  { useNavigate } from 'react-router-dom'
 import React from 'react'
 import './Login.css'
+import { Button, Stack } from '@chakra-ui/react';
 
 
-const Login = ({ watchlist, updateWatchlist, userId }) => {
+const Login = ({ watchlist, updateWatchlist }) => {
     const auth = getAuth();
     const navigate = useNavigate();
     const login = (event) => {
@@ -72,7 +73,9 @@ const Login = ({ watchlist, updateWatchlist, userId }) => {
                     <label htmlFor='Password'>Password: </label>
                     <input id='login-password-input' name='Password' type='password' required />
                 </div>
-                <button className='sign-up' type="submit">Login</button>
+                <Stack>
+                    <Button className='sign-up' type="submit">Login</Button>
+                </Stack>
                 <div id='create-account-msg'>Are you new? <button type='button' onClick={toggleSignInMethod}>Create Account</button></div>
             </form>
             
@@ -85,7 +88,9 @@ const Login = ({ watchlist, updateWatchlist, userId }) => {
                     <label htmlFor='Password'>Password: </label>
                     <input id='create-password-input' name='Password' type='password' minLength="6" required />
                 </div>
-                <button className='login' type="submit">Create Account</button>
+                <Stack>
+                    <Button className='login' type="submit">Create Account</Button>
+                </Stack>
                 <div id='sign-in-msg'>Already have an account? <button type='button' onClick={toggleSignInMethod}>Login</button></div>
             </form>
 

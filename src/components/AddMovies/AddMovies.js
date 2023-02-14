@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import SearchResults from "../elements/SearchResults/SearchResults";
-import { Input, Stack } from '@chakra-ui/react'
 import './AddMovies.css'
 
 const AddMovies = ({ compareMovie, watchlist }) => {
