@@ -4,14 +4,15 @@ import { onAuthStateChanged } from "firebase/auth";
 import { useEffect } from "react";
 import AddMovies from '../AddMovies/AddMovies';
 import React, { useState } from 'react';
-import NavBar from '../NavBar/NavBar'
 import Watchlist from '../Watchlist/Watchlist';
+import NavBar from "../NavBar/NavBar.tsx"
 import Details from '../Details/Details';
 import Login from "../Login/Login";
 import { generalNotfy, warningNotyf } from "../elements/Notifications/Notifications";
 import 'notyf/notyf.min.css';
 import './App.css';
 import { auth } from "../../firebase_setup/firebase";
+import { ChakraProvider } from "@chakra-ui/react";
 
 
 const App = () => {
@@ -62,6 +63,7 @@ const App = () => {
   const  updateWatchlist = newWatchlist => setWatchlist(newWatchlist);
 
   return (
+    <ChakraProvider>
     <Router>
       <NavBar userId={userId}/>
       <Routes>
@@ -78,6 +80,7 @@ const App = () => {
         <Route path='/login' element={<Login watchlist={watchlist} updateWatchlist={updateWatchlist} userId={userId} />} />                     
       </Routes>
     </Router>
+    </ChakraProvider>
   );
 }
 

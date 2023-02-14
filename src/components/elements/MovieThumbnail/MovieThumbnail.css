@@ -19,6 +19,7 @@
     width:100%;
     height:100%;
     display: inline-block;
+    transition: 0.15s;
 }
 
 .thumbnail:hover::before {
@@ -28,11 +29,6 @@
 .thumbnail img {
 display:block;
 }
-
-/* .results-dived {
-    display: grid;
-    grid-template-columns: 1fr;
-} */
 
 .add-to-watchlist, .details {
     font-size: 15px;
@@ -60,19 +56,14 @@ display:block;
     top: 63%;
 }
 
+.details:hover,
 .add-to-watchlist:hover {
-    background-color: grey;
+    background-color: rgb(237, 237, 237);
+    transition: 0.15s;
 }
 
-.details:hover {
-    background-color: grey;
-}
-
-.thumbnail:hover .add-to-watchlist {   
-    opacity: 1;
-}
-
-.thumbnail:hover .details {   
+.thumbnail:hover .add-to-watchlist,
+.thumbnail:hover .details  {   
     opacity: 1;
 }
 

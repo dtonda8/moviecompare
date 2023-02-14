@@ -16,11 +16,11 @@ const Details = ({ watchlist, onClickAddMovie }) => {
                 handleActors={(actors) => setActors(actors)}
                 watchlist={watchlist}
                 onClickAddMovie={onClickAddMovie}/>
-            <h2>Trailer</h2>
+            <p><strong>Trailer</strong></p>
             <div className='video-container' id={movieID + '-video'} >
                 <Trailer movieID={Number(movieID)} />
             </div>
-            <h2>Cast</h2>
+            <p><strong>Cast</strong></p>
             <div className='actors'>
                 <Actors actors={actors} />
             </div>

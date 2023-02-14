@@ -38,7 +38,6 @@ const SearchResults = ({ input, onClickAddMovie, watchlist }) => {
                         })}
             </div>
         );
-
     } 
     return (
         <div className="results-div">

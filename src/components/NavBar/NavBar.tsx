@@ -27,8 +27,20 @@ import { signOut, getAuth } from "firebase/auth";
 import  { useNavigate } from 'react-router-dom';
 import { ReactComponent as Tmdb } from '../elements/RatingSymbols/tmdb.svg';
 import { ReactComponent as GithubIcon } from './logo-github.svg';
+import { useColorMode } from '@chakra-ui/react';
 
-export default function WithSubnavigation({userId}) {
+function ChangeThemeBtn() {
+  const { colorMode, toggleColorMode } = useColorMode()
+  return (
+    <header>
+      <Button onClick={toggleColorMode}>
+        Toggle {colorMode === 'light' ? 'Dark' : 'Light'}
+      </Button>
+    </header>
+  )
+}
+
+export default function NavBar({userId}) {
   const { isOpen, onToggle } = useDisclosure();
   const navigate = useNavigate();
 
@@ -41,7 +53,7 @@ export default function WithSubnavigation({userId}) {
             console.log(error)
         });
     }
-}
+  }
 
   let btnHoverColour = 'green.500';
   let btnColour = 'green.400';
@@ -70,11 +82,11 @@ export default function WithSubnavigation({userId}) {
             icon={
               isOpen ? <CloseIcon w={3} h={3} /> : <HamburgerIcon w={5} h={5} />
             }
-            variant={'ghost'}
+            variant={'link'}
             aria-label={'Toggle Navigation'}
           />
         </Flex>
-        <Flex flex={{ base: 1 }} justify={{ base: 'center', md: 'start' }}>
+        <Flex flex={{ base: 1 }} justify={{ base: 'center', md: 'start' }} align={'center'}>
           <Text
             textAlign={useBreakpointValue({ base: 'center', md: 'left' })}
             fontFamily={'heading'}
@@ -94,6 +106,7 @@ export default function WithSubnavigation({userId}) {
           spacing={6}>
           <Container
             display={{ base: 'none', md: 'inline-flex' }}>
+            {ChangeThemeBtn()}
             <GithubIcon width="40px" height="40px" />
             <Tmdb width="80px" height="40px" />
           </Container>
@@ -174,6 +187,7 @@ const MobileNav = () => {
       {NAV_ITEMS.map((navItem) => (
         <MobileNavItem key={navItem.label} {...navItem} />
       ))}
+      {ChangeThemeBtn()}
     </Stack>
   );
 };

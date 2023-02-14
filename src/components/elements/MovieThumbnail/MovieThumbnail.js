@@ -24,8 +24,8 @@ const MovieThumbnail = ({ poster_path, title, id, release_date, watchlist, onCli
                     id = {'add-' + id}
                     onClick={() => onClickAddMovie(id)}>
                     {getAddWatchlistMsg(id)}
-                        
                 </button>
+                
                 <Link to={'/' + id}>
                     <button className='details'>
                         Details

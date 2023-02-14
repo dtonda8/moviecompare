@@ -36,7 +36,6 @@ const Trailer = (props) => {
                 allow="autoplay">
             </iframe>
         </div>
-
     )
 }
 
