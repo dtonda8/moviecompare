@@ -1,4 +1,6 @@
 # MovieCompare
+Chrome Extension: https://chromewebstore.google.com/detail/moviecompare/jgghjfbpokcoggijcnkfpohibapfljnc
+
 ![Home Page Image](media/SearchPage.png)
 
 Use MovieCompare to find, save and compare your favourite movies instead of opening multiple tabs for trailers and ratings.
