@@ -1,5 +1,4 @@
 # MovieCompare
-Chrome Extension: https://chromewebstore.google.com/detail/moviecompare/jgghjfbpokcoggijcnkfpohibapfljnc
 
 ![Home Page Image](media/SearchPage.png)
 
