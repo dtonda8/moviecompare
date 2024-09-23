@@ -1,5 +1,5 @@
 .results-div {
-    display: inline-grid;
+    display: grid;
     grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
     row-gap: 1rem;
     column-gap: 1rem;
