@@ -29,12 +29,10 @@ exports.handler = async (event, context) => {
     'http://localhost:3000' // For local development
   ];
 
-  if (origin && !allowedOrigins.includes(origin)) {
+  // Require origin header and check if it's allowed
+  if (!origin || !allowedOrigins.includes(origin)) {
     return {
       statusCode: 403,
-      headers: {
-        'Content-Type': 'application/json'
-      },
       body: JSON.stringify({ error: 'Forbidden: Origin not allowed' })
     };
   }
