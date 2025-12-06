@@ -1,9 +1,42 @@
 exports.handler = async (event, context) => {
+  // Handle CORS preflight requests
+  if (event.httpMethod === 'OPTIONS') {
+    return {
+      statusCode: 200,
+      headers: {
+        'Access-Control-Allow-Origin': 'https://moviecompare-a570f.web.app',
+        'Access-Control-Allow-Methods': 'GET, OPTIONS',
+        'Access-Control-Allow-Headers': 'Content-Type',
+        'Access-Control-Max-Age': '86400'
+      },
+      body: ''
+    };
+  }
+
   // Only allow GET requests
   if (event.httpMethod !== 'GET') {
     return {
       statusCode: 405,
       body: JSON.stringify({ error: 'Method not allowed' })
+    };
+  }
+
+  // Check origin - only allow requests from Firebase domain
+  const origin = event.headers.origin || event.headers.Origin || '';
+  const allowedOrigins = [
+    'https://moviecompare-a570f.web.app',
+    'https://moviecompare-a570f.firebaseapp.com',
+    'http://localhost:3000' // For local development
+  ];
+
+  // Require origin header and check if it's allowed
+  if (!origin || !allowedOrigins.includes(origin)) {
+    return {
+      statusCode: 403,
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ error: 'Forbidden: Origin not allowed' })
     };
   }
 
@@ -43,7 +76,8 @@ exports.handler = async (event, context) => {
       statusCode: 200,
       headers: {
         'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': '*'
+        'Access-Control-Allow-Origin': origin || 'https://moviecompare-a570f.web.app',
+        'Access-Control-Allow-Credentials': 'true'
       },
       body: JSON.stringify(data)
     };
