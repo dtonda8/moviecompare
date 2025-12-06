@@ -8,6 +8,19 @@ import { getMovieDetails } from '../../../utils/api';
 const DetailsCompact = ({movieID, handleActors, watchlist, onClickAddMovie}) => {
     const [movieDetails, setMovieDetails] = useState(null);
 
+    const getAgeRating = useCallback((releaseDates) => {
+        if (releaseDates && releaseDates.results) {
+            const results = releaseDates.results;
+            const AU = results.filter(country => country.iso_3166_1 === 'AU');
+            if (AU.length !== 0) return AU[0].release_dates[0].certification
+            else {
+                const US = results.filter(country => country.iso_3166_1 === 'US');
+                if (US.length !== 0)  return US[0].release_dates[0].certification
+            }
+        }
+        return "Not Found"
+    }, [])
+
     const handleMovieDetails = useCallback(data => {
         if (data && !('success' in data)) { 
             setMovieDetails(data)
@@ -16,7 +29,7 @@ const DetailsCompact = ({movieID, handleActors, watchlist, onClickAddMovie}) => 
                 handleActors(data.credits.cast)            
             }
         }
-    }, [handleActors])
+    }, [handleActors, getAgeRating])
 
     useEffect(() => {
         getMovieDetails(movieID)
@@ -43,7 +56,7 @@ const DetailsCompact = ({movieID, handleActors, watchlist, onClickAddMovie}) => 
         return "Not Found"
     }
 
-    const getAgeRating = () => {
+    const getAgeRatingFromState = () => {
         if (movieDetails) {
             const results = movieDetails.release_dates.results;
             const AU = results.filter(country => country.iso_3166_1 === 'AU');
@@ -93,7 +106,7 @@ const DetailsCompact = ({movieID, handleActors, watchlist, onClickAddMovie}) => 
                         </p>
                         <div className='age-runtime-container'>
                             <p className='age-rating' fontSize={'6xl'}>
-                                <strong>Age Rating: </strong> {getAgeRating()}  
+                                <strong>Age Rating: </strong> {getAgeRatingFromState()}  
                             </p>
                             <p className='runtime'>
                                 <strong> Runtime: </strong> {runtime} min
