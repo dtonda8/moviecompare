@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import { ReactComponent as Imdb } from '../RatingSymbols/imdb.svg';
 import { ReactComponent as Metacritic } from '../RatingSymbols/metacritic.svg';
 import { ReactComponent as RottenTomatoes } from '../RatingSymbols/rotten_tomatoes.svg';
@@ -10,16 +10,7 @@ const Ratings = ({ movieID, imdbID, vote_average }) => {
     const [ratings, setRating] = useState(null)
     const [average, setAverage] = useState(vote_average)
     
-    useEffect(() => {
-        if (!imdbID) return
-        getMovieRatings(imdbID)
-            .then(data => handleData(data))
-            .catch(error => {
-                console.error('Error fetching ratings:', error);
-            });
-    }, [imdbID])
-
-    const handleData = data => {
+    const handleData = useCallback(data => {
         if (data.Response === 'False') return
         const { Ratings } = data;
         const ratingsTemp = {};
@@ -38,7 +29,16 @@ const Ratings = ({ movieID, imdbID, vote_average }) => {
         
         setAverage(total / n)
         setRating(ratingsTemp)
-    }
+    }, [vote_average])
+
+    useEffect(() => {
+        if (!imdbID) return
+        getMovieRatings(imdbID)
+            .then(data => handleData(data))
+            .catch(error => {
+                console.error('Error fetching ratings:', error);
+            });
+    }, [imdbID, handleData])
 
     let moreRatings = <div className='more-ratings'></div>
     if (ratings) {

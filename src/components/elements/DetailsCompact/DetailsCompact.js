@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import './DetailsCompact.css'
 import MovieThumbnail from "../MovieThumbnail/MovieThumbnail";
 import Ratings from '../Ratings/Ratings';
@@ -8,15 +8,7 @@ import { getMovieDetails } from '../../../utils/api';
 const DetailsCompact = ({movieID, handleActors, watchlist, onClickAddMovie}) => {
     const [movieDetails, setMovieDetails] = useState(null);
 
-    useEffect(() => {
-        getMovieDetails(movieID)
-            .then(data => handleMovieDetails(data))
-            .catch(error => {
-                console.error('Error fetching movie details:', error);
-            });
-    }, [movieID])
-
-    const handleMovieDetails = data => {
+    const handleMovieDetails = useCallback(data => {
         if (data && !('success' in data)) { 
             setMovieDetails(data)
             getAgeRating(data.release_dates)
@@ -24,7 +16,15 @@ const DetailsCompact = ({movieID, handleActors, watchlist, onClickAddMovie}) => 
                 handleActors(data.credits.cast)            
             }
         }
-    }
+    }, [handleActors])
+
+    useEffect(() => {
+        getMovieDetails(movieID)
+            .then(data => handleMovieDetails(data))
+            .catch(error => {
+                console.error('Error fetching movie details:', error);
+            });
+    }, [movieID, handleMovieDetails])
 
     const getStars = () => {
         const actors = movieDetails.credits.cast;
