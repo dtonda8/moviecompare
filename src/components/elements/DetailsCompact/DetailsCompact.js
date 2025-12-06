@@ -3,17 +3,18 @@ import './DetailsCompact.css'
 import MovieThumbnail from "../MovieThumbnail/MovieThumbnail";
 import Ratings from '../Ratings/Ratings';
 import { Stack } from '@chakra-ui/react'
-
-const API_KEY = 'redacted';
+import { getMovieDetails } from '../../../utils/api';
 
 const DetailsCompact = ({movieID, handleActors, watchlist, onClickAddMovie}) => {
     const [movieDetails, setMovieDetails] = useState(null);
 
     useEffect(() => {
-        fetch(`https://api.themoviedb.org/3/movie/${movieID}?api_key=${API_KEY}&language=en-US&append_to_response=credits,release_dates`)
-            .then(response => response.json())
-            .then(data => handleMovieDetails(data));
-    }, [])
+        getMovieDetails(movieID)
+            .then(data => handleMovieDetails(data))
+            .catch(error => {
+                console.error('Error fetching movie details:', error);
+            });
+    }, [movieID])
 
     const handleMovieDetails = data => {
         if (data && !('success' in data)) { 

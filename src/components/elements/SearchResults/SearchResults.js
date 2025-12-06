@@ -1,23 +1,18 @@
 import React, { useState, useEffect } from "react";
 import MovieThumbnail from "../MovieThumbnail/MovieThumbnail";
 import './SearchResults.css'
-
-const API_KEY = 'redacted';
+import { searchMovies } from '../../../utils/api';
 
 const SearchResults = ({ input, onClickAddMovie, watchlist }) => {
     const [data, setData] = useState(null);
 
     useEffect(() => {
-        if (input.length < 3) {
-            fetch(`https://api.themoviedb.org/3/trending/all/day?api_key=${API_KEY}`)
-                .then(res => res.json())
-                .then(resJSON => setData(resJSON))
-        } else {
-            fetch(`https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&query=${input}`)
-                .then(res => res.json())
-                .then(resJSON => setData(resJSON))
-        }
-    }, [])
+        searchMovies(input)
+            .then(resJSON => setData(resJSON))
+            .catch(error => {
+                console.error('Error fetching search results:', error);
+            });
+    }, [input])
     
     if (data) {
         let { results } = data

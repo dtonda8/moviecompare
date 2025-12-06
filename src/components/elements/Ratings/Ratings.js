@@ -4,8 +4,7 @@ import { ReactComponent as Metacritic } from '../RatingSymbols/metacritic.svg';
 import { ReactComponent as RottenTomatoes } from '../RatingSymbols/rotten_tomatoes.svg';
 import { ReactComponent as Tmdb } from '../RatingSymbols/tmdb.svg';
 import './Ratings.css'
-
-const OMDB_KEY = 'redacted';
+import { getMovieRatings } from '../../../utils/api';
 
 const Ratings = ({ movieID, imdbID, vote_average }) => {
     const [ratings, setRating] = useState(null)
@@ -13,10 +12,12 @@ const Ratings = ({ movieID, imdbID, vote_average }) => {
     
     useEffect(() => {
         if (!imdbID) return
-        fetch(`https://www.omdbapi.com?i=${imdbID}&apikey=${OMDB_KEY}`)
-            .then(res => res.json())
+        getMovieRatings(imdbID)
             .then(data => handleData(data))
-    }, [])
+            .catch(error => {
+                console.error('Error fetching ratings:', error);
+            });
+    }, [imdbID])
 
     const handleData = data => {
         if (data.Response === 'False') return
